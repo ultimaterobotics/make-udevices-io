@@ -1,0 +1,36 @@
+---
+title: Welcome to make.udevices.io!
+description: Got started building our docs site with Starlight.
+template: splash
+hero:
+  tagline: The ultimate uDevices knowledge base
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Start here!
+      link: /guides/example/
+      icon: right-arrow
+      variant: primary
+    - text: Go shopping on uDevices!
+      link: https://starlight.astro.build
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## What's going on?
+
+<CardGrid stagger>
+	<Card title="Learn" icon="pencil">
+		Guides on how to set up, use, troubleshoot, and work with uDevices.
+	</Card>
+	<Card title="Community-based" icon="add-document">
+		Knowledge compiled by the community, for the community.
+	</Card>
+	<Card title="Hardware is hard..." icon="setting">
+		But it shouldn't be! We're here to make it accessible to everyone, starting with you.
+	</Card>
+	<Card title="Start now!" icon="open-book">
+		Interested? Dig into our [Guides](https://starlight.astro.build/) and start learning - start making!
+	</Card>
+</CardGrid>
