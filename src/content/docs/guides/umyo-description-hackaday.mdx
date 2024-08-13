@@ -1,0 +1,16 @@
+---
+title: uMyo - Description (from Hackaday)
+description: Old description from Hackaday project page
+---
+
+The project was started spontaneously in November 2021 - it was more of an idea that was interesting to implement. But from January to February we had no time to work on it, and then the war began in Ukraine... And only in May we returned back to this project and decided to finalize it.
+
+Initially, we did not think much about the way it will be attached to a hand, so we used 6mm textile button connectors but they were rather useless without some matching fabric electrodes. Yet at the same time they inspired us to try dry metal contact - an option that never worked well enough before so we didn’t consider it here initially. Also, the design of the board had several mistakes and missed an important property of the front-end amplifier we used there, and fixing that involved quite extreme soldering with 3 SMD components forming a filtering network not present in design.
+
+In this design we decided to drop external ADC and use nRF52 in-built ADC - which turned out to be not that bad, but only after proper signal amplification. We added AD8293 fixed-gain zero-drift input amplifier, seduced by its low price - although its input properties are far from stellar, so we weren’t sure if it would work well enough. Turns out, it works, more or less - but tends to saturate the signal to upper or lower rail due to its high bias current. Well, you should fight fire with fire - we added a heavily filtered PWM with 10M resistor that adds bias current on itself - and PWM width is dynamically adjusted to keep the amplifier’s output between the rails. That sounds quite fishy - but the result is not only usable, it turns out to be quite good!
+
+Now, in parallel with the firmware, we are working on changing the design of the board and purchasing the necessary additional elements. Therefore, follow the logs - it will be interesting soon!
+
+## Further reading
+
+[Getting started with uMyo](/guides/umyo-getting-started-hackaday) - old guide to using uMyo;

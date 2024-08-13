@@ -1,0 +1,14 @@
+---
+title: Getting Started With uECG - Wireless firmware update via BLE
+description: old guide to using uECG from Hackaday, now partially outdated
+---
+
+Since summer 2021, uECG devices got bootloader capable of both BLE and direct radio firmware updates. BLE update is slow (takes ~5 minutes) but requires nothing but an Android phone.
+
+For that, you need to go into "firmware update" section of the app (bottom right button on 2nd screen, with Poincare plot), select compile firmware .bin file, and start device scan on the phone. 
+
+At the same time, you need to put uECG device into BLE bootloader mode. For that simply turn it off, and after that - press button for 6+ seconds. As soon as blue LED starts blinking, you can release the button - device moved into bootloader mode.
+
+Within some seconds after that, Android app should detect it and start upload.
+
+If something went wrong - no problem, uECG device won't work but its bootloader can't be damaged. Just repeat the procedure and it will be fine

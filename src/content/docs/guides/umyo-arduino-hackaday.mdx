@@ -1,0 +1,19 @@
+---
+title: Using with Arduino and ESP32
+description: old guide to using uMyo from Hackaday, now partially outdated
+---
+
+Using with Arduino:
+
+uMyo is a muscle activity sensor that transmits data wirelessly to Arduino. Two standard options are supported: nRF24 module with any Arduino model, or transfer via BLE directly to ESP32 boards.
+
+For using with nRF24 module, use uMyo_RF24 library from Arduino library manager (or download it here: https://github.com/ultimaterobotics/uMyo_RF24 ). Library contains basic examples allowing to get data from uMyo devices
+
+See video instruction for more details:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FF66FAEhXgg?si=Eh1D1QB5CK0YqWRa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Using with ESP32:
+
+For ESP32, use uMyo_BLE library from Arduino library manager (or download it here: https://github.com/ultimaterobotics/uMyo_BLE ). Library contains the same examples as RF24 version with similar usage.
+

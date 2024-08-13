@@ -1,0 +1,28 @@
+---
+title: uECG - small open source wireless ECG sensor
+description: Collected information about uECG, the wearable EMG sensor
+---
+
+uECG is small wearable wireless ECG sensor that attempts to bridge the gap between modules for prototyping and medical devices. It can be used both as a development platform and a standalone ECG.
+It’s low power, very lightweight, can be worn during physical activities. It streams processed ECG signal in real time and also collects raw data. The ECG signal is rather good, not very noisy, and the recent PCB version has a ipex connector for an external sticker antenna, which makes the connection more stable. We wrote an Android app and a node.js (cross-platform) app for it, so the data can be received on the phone or PC. The battery we currently use is enough to stream for 24 hours. We also made a nice 3D-printed case for it.
+
+If you have any questions regarding our device or your project with it, then feel free to write to us on Discord https://discord.gg/dEmCPBzv9G
+
+## Main features:
+- 1-channel ECG (1 channel + 1 GND electrode)
+- Real time processed ECG signal streaming + csv export of raw data
+- Stream to smartphone (Android) or PC (via USB base receiver); more on software in Software specs below
+- Can be also used with existing fitness apps (standard BLE connection)
+- BPM, HRV, Poincare plots
+- Accelerometer/gyroscope data
+- Wireless firmware update
+- Lightweight - sticks on the chest via 2 electrodes; compatible with ECG chest straps (through adapter)
+- Low noise - can be used while running or working out
+- 24h battery life in streaming mode
+- 3D-printed case in 5 colors (black, pink, yellow, turquoise, and white)
+
+## Further reading
+
+- [Project overview](/guides/uecg-description-hackaday) from Hackaday;
+- [Getting started with uECG](/guides/uecg-getting-started-hackaday) - old guide to using uECG;
+- [uMyo - wearable EMG sensor](/guides/umyo) - the other half of uDevices, a wearable EMG sensor.

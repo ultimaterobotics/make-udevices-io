@@ -1,0 +1,40 @@
+---
+title: Getting Started With uECG - Using the App
+description: old guide to using uECG from Hackaday, now partially outdated
+---
+
+## Using the app
+The app is only for Android currently. Not all Android phones may be supported: please feel free to complain loudly in the comments on Hackaday and we’ll try to fix it! :)
+
+This is steps for Android 7+:
+
+1. Download the free uECG monitor app from Google Play (or enter “uECG” in the search).
+2. Go to the settings of the installed application and allow location access (required for Bluetooth) and saving files.
+3. Turn on the bluetooth.
+4. Turn on the device.
+5. Launch the app and bring the phone close to the device. Wait up to 30 seconds. The data should appear, and within a minute signal should become stable.
+6. If you don't see any signal within 1 minute, then:
+    a) click on the cross (in the upper left corner) to exit the app, then remove it from the history of open tabs - both steps are necessary.
+    b) turn off bluetooth for ~5 seconds, then turn it on again
+    c) then start the app.
+
+7. To switch between the tabs, click on the upper right button "HRV":
+
+- the default tab displays RR variation, ECG, detected BPM, SDNN, and steps.
+- the second tab shows Poincare plot: length of previous beat vs length of the next beat. If the pulse is perfectly stable, all points are on the central line. This chart is important for spotting certain types of arrhythmia, and also gives some insight about stress level.
+- on the third tab there are 5 charts which can be turned on and off by activating the boxes with their names - steps, etc. HRV parameter indicates average deviation in length of consequent beats. GSR indicates skin resistance (auto-scaled to fit current range).
+- the third tab has buttons for displaying data in different time scales - by clicking on the desired interval accordingly - 1 minute, 5 minutes, etc.
+
+8. For Android up to 9th version, files are saved in "phone storage / documents / uECG"
+9. For Android version 10, files are saved in "phone storage / android / data / com.ultimaterobotics.uecgmonitor4_2 / files / documents / uECG"
+
+Android 6 and less has something in BLE we can't figure out, so you will need additional app to get it running: BLE scanner app should be active in the background in order to get data into uECG monitor. It properly configures some parts of BLE scanner which our app doesn't :)
+
+1. Find BLE scanner in google play and install it (it has some non-free functions which we don't need, so a basic version is enough).
+2. Run BLE scanner. It should be able to see uECG non-connectable device when it's on.
+
+When BLE scanner is running, everything else is the same as for Android 7+.
+
+And all of that you can see in our video!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eiqTFUrvUi4?si=CaEo54mYlM0KSzb1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

@@ -1,0 +1,56 @@
+---
+title: Getting Started With uECG - Wired Firmware Update
+description: old guide to using uECG from Hackaday, now partially outdated
+---
+
+## Wired firmware update part 1 (connecting hardware)
+Once in a while, we'll update firmware for the device. You can upload it using a USB programmer and a pogo pin adapter. Software part of this guide is in part 2 (step 8).
+
+1. Connect the 4 colored wires to the programmer. The wires come in random colors; to remember which is what, we usually choose the most neutral/dark color for GND, most warm/closest to red for 3.3V, lightest/closest to white for SWCLK and what’s left is usually ok for SWIO.
+Please connect all wires on the same ("lower" if you look at it the standard way) row of the st-link programmer. We have reports that even though GND, 3.3V lines are present in both rows, they actually might not work.
+2. Then connect the wires to the pogo pin adapter.
+3. Press the pogo pins into the pogo pads (holes in the plastic case next to electrode connectors).
+4. Hold the pins in place during firmware upload. Remove the pins after upload is completed.
+
+## Wired firmware update part 2 (uploading pre-built fimware)
+This instruction covers upload process on Linux (tested with Ubuntu 18.04 but should work with other distributions too), and on Windows (tested on Win7 but also should work on other versions).
+
+You can upload pre-compiled .hex files which are available on our github, or build firmware from sources (instruction for this process is provided at step 9).
+
+The latest firmware is located here: https://github.com/ultimaterobotics/uECG/tree/main/uECG_v5/build
+
+### Firmware upload on Linux
+
+Install openocd with:
+
+sudo apt install openocd
+
+Connect the device to the programmer. Pins on uECG have text labels, check pinout of your particular STLink programmer for proper connections.
+
+Go to the folder with .hex file and execute openocd command:
+
+cd ~/< hex-file-folder >
+sudo openocd -f interface/stlink.cfg -f target/nrf52.cfg -c init -c "reset halt" -c "flash write_image erase uECG5.hex" -c "reset" -c exit
+
+If everything’s ok, command will output some information ending with "wrote xxxxx bytes from file uECG5.hex". In case of errors the most common reason is that pogo pins were not pressed reliably enough.
+
+### Firmware upload on Windows
+
+Download openocd here:  https://gnutoolchains.com/arm-eabi/openocd/  (use the latest version). Unpack it into some folder. Plug in st-link programmer.
+
+Inside the folder run drivers\UsbDriverTool.exe - and there activate driver for st-link (it should appear in the list). From multiple options select Libusb - Winusb.
+
+After that copy .hex file into \bin subfolder of the openocd (in this case path to the .hex file won't be required, only its name).
+
+At this point everything is ready, connect all wires, run cmd and move there into \bin subfolder of the openocd, then connect the device to st-link, and, while connected, run
+
+openocd -f interface/stlink.cfg -f target/nrf52.cfg -c init -c "reset halt" -c "flash write_image erase uECG5.hex" -c "reset" -c exit
+
+If everything’s ok, command will output some information ending with "wrote xxxxx bytes from file uECG5.hex". In case of errors the most common reason is that pogo pins were not pressed reliably enough.
+
+## For compiling firmware: installing SDK/compiler and building
+You will need Arm-none-eabi compiler version 8-2018-q4-major or higher
+Other than that, you will need urf_lib to build any of uECG projects (uECG main firmware, base firmware, bootloader) which should be located in the same folder (so you can see folders uECG_v5 and urf_lib next to each other), and you need to set ARM compiler path in its configuration file urf_lib/nrf_usdk52/gcc/Makefile.posix (or Makefile.windows, depending on your OS). 
+
+That’s it for build config. Now you need to run make in project folder and it should produce compiled .hex file.
+

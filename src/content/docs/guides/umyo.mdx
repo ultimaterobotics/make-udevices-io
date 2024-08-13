@@ -1,0 +1,23 @@
+---
+title: uMyo - wearable EMG sensor
+description: Collected information about uMyo, the wearable EMG sensor
+---
+
+uMyo is a single channel wearable EMG sensor with wireless data transmission. Multiple sensors can be connected to one receiver.
+uMyo is a flexible EMG system allowing to pick up signals from different muscles - and not only from arms, but also legs, torso or even face.
+It is certified open source hardware (https://certification.oshwa.org/ua000003.html)
+
+## Main features of uMyo are:
+- It's wireless! No more mess of wires when working with EMG
+- Works with any Arduino via nRF24 radio module (you can use our Arduino library)
+- Works with ESP32 with no extra hardware (we also wrote an Arduino library)
+- Multiple units (up to 12 in current version) can send data to the same Arduino/ESP32
+- Sends out detected muscle activity level, 4-bins spectrum; and raw EMG data (in nRF24 mode)
+- Can be used with a bracelet and dry electrodes, or with gel electrodes via soldered connector
+
+## Further reading
+
+- [Project overview](/guides/umyo-description-hackaday) from Hackaday;
+- [Getting started with uMyo](/guides/umyo-getting-started-hackaday) - old guide to using uMyo;
+- [Demo projects](/guides/umyo-demo-projects) - our showcase projects using one or two uMyos;
+- [uECG - wearable ECG sensor](/guides/uecg) - uMyo's older sibling device, a wearable ECG sensor. 

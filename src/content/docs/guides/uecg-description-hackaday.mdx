@@ -1,0 +1,20 @@
+---
+title: uECG - Description (from Hackaday)
+description: Old description from Hackaday project page
+---
+
+We made the first prototype of uECG at the end of 2018, after working on several biosignals projects (both commercial and in-house) and becoming annoyed that there was no simple, open source wearable ECG that you can, well, just wear and measure ECG with. We really liked HeartyPatch, but it was a bit large and didn’t have low power mode. We were going in the same direction, but wanted a simpler and smaller device. Since then, we made several versions (it’s currently v4.5) and a lot has happened. We went to several Maker Faires with uECG, launched a small Indiegogo campaign, which was successful, and after shipping the devices to backers we produced another two batches which we sold on Tindie. In June 2021, we produced the most recent PCB v4.5 batch, with most improvements being around the antenna and powering the device. 
+
+The following is both a description of our approach to device’s schematics/PCB design and a changelog for the latest version. As a main analog front-end, in our schematics we used a generic MCP3911 (dual channel), because we didn’t like the specialized overpriced AFEs. It’s originally developed for energy metering, but it performs nicely in our case too. We also added AD8606 in the role of a buffer precision op amp. For the microcontroller, we chose nRF52832, which is low power, has a lot of processing power and memory, and provides us with a stable Bluetooth/RF connection. We also added BMI160 as an accelerometer/gyroscope IMU. For power in the first PCB versions, we used a simple and reliable LDO - MCP1703. Now we use XC6206, because it has better parameters, better in-built protection, and is cheaper. We use MCP73831T as a charging management chip. We also used SIP32810 for protection and power switching, and a 550mA resettable fuse for short circuit/overload protection.
+
+In first versions we had an optocoupler for connecting stuff to uECG (like LEDs), now we have removed it because it’s not used very often by anyone and we have freed more space on PCB for moving components around. Might add it again… not sure about it yet.
+
+One of the hardest parts was actually to find snap ECG connectors that we could solder on board, but after some time we managed to crack the needed Chinese symbols for them on taobao (where we buy a lot). Here’s the symbols for “ECG snap connectors”, in case somebody needs it: 心电扣 We also tested several battery sizes before stopping at 501245 size, which was both sleek enough to occupy space between the micro USB/switch and thick enough to provide the capacity we needed. 
+
+The firmware performs measuring of raw ECG, filters out mains noise using our own algorithm (50/60 Hz, auto-detecting which band is active), detects R peaks (and calculates from them BPM, heart rate variability statistics), measures skin resistance and receives accelerometer, gyro, steps data from IMU chip. Also firmware takes care of detecting R peaks amplitude and sends out correct peak value via BLE connection (in the previous version R peak amplitude could be distorted by averaging since the peak normally fits within 1-2 BLE data points - that’s fixed now). The resulting ECG quality of this setup is quite high with clearly distinguishable P, QRS, T phases when the unit is properly placed - and even during running a lot of details still can be seen (although distorted by body motions).
+
+For more detailed signal, direct RF connection to PC via base station can be used - in this case, data rate is 976 Hz (vs 122 Hz in BLE mode).
+
+## Further reading
+
+[Getting started with uECG](/guides/uecg-getting-started-hackaday) - old guide to using uECG;

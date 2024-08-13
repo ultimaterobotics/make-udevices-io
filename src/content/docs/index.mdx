@@ -1,28 +1,52 @@
 ---
-title: Welcome to uDevices documentation!!
+title: Welcome to uDevices documentation!
 description: Got started building our docs site with Starlight.
 template: splash
 hero:
   tagline: The ultimate uDevices knowledge base
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/logo_uDevices_short.png
   actions:
-    - text: Start here!
-      link: /guides/example/
+    - text: Get started!
+      link: /guides/getting-started-with-udevices/
       icon: right-arrow
       variant: primary
-    - text: Go shopping on uDevices!
-      link: https://starlight.astro.build
+    - text: Join the community!
+      link: https://discord.gg/9cbBHxRt
+      icon: external
+    - text: Star on Github!
+      link: https://github.com/ultimaterobotics
       icon: external
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## What's going on?
+## Get started!
 
-<CardGrid stagger>
+<CardGrid>
+	<Card title="uMyo" icon="setting">
+		[Start now!](guides/umyo-quick-start)
+		[Features](guides/umyo)
+		[Details](guides/umyo-description-hackaday)
+		[Projects](guides/umyo-demo-projects)
+		[Read the Docs!](guides/umyo-getting-started-hackaday)
+	</Card>
+	<Card title="uECG" icon="heart">
+		[Start now!](guides/uecg-quick-start)
+		[Features](guides/uecg)
+		[Details](guides/uecg-description-hackaday)
+		[Read the Docs!](guides/umyo-getting-started-hackaday)
+	</Card>
+</CardGrid>
+
+## What is uDevices?
+
+uDevices is our ecosystem of open source hardware devices that are compact, inexpensive, and ready to use and modify.
+Currently it's two devices - uECG and uMyo, but in time there may be more.
+
+<CardGrid>
 	<Card title="Learn" icon="pencil">
-		Guides on how to set up, use, troubleshoot, and work with uDevices.
+		Guides on how to [set up](guides/uecg-basic-hackaday), [use](guides/umyo-using-bracelet/hackaday), [troubleshoot](guides/uecg-wireless-firmware-hackaday), and [work](guides/umyo-demo-projects) with uDevices.
 	</Card>
 	<Card title="Community-based" icon="add-document">
 		Knowledge compiled by the community, for the community.
@@ -31,6 +55,6 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 		But it shouldn't be! We're here to make it accessible to everyone, starting with you.
 	</Card>
 	<Card title="Start now!" icon="open-book">
-		Interested? Dig into our [Guides](https://starlight.astro.build/) and start learning - start making!
+		Interested? Dig into our [Docs](guides/getting-started-with-udevices) and start learning - start making!
 	</Card>
 </CardGrid>
