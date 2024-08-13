@@ -5,7 +5,11 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Start learning!',
+			title: 'Start making!',
+			logo: {
+				light: './src/assets/uDevices_logo_short_light.svg',
+				dark: './src/assets/uDevices_logo_short_dark.svg',
+			  },
 			social: {
 				github: 'https://github.com/ultimaterobotics',
 			},
