@@ -5,7 +5,7 @@ import starlight from '@astrojs/starlight';
 export default defineConfig({
 	integrations: [
 		starlight({
-			title: 'Start making!',
+			title: 'uDevices',
 			logo: {
 				light: './src/assets/uDevices_logo_short_light.svg',
 				dark: './src/assets/uDevices_logo_short_dark.svg',
