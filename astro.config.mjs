@@ -37,6 +37,7 @@ export default defineConfig({
 						{ label: 'uMyo - Using uMyo with wet electrodes', link: '/guides/umyo-wet-electrodes-hackaday'},
 						{ label: 'uMyo - Using uMyo with Arduino/ESP32', link: '/guides/umyo-arduino-hackaday'},
 						{ label: 'uMyo - Using 2 uMyo devices', link: '/guides/umyo-2-umyos-hackaday'},
+						{ label: 'How to upload uMyo firmware from Windows', link: '/guides/how-to-upload-firmware-on-umyo-windows'},
 						{ label: 'Demo projects', link: '/guides/umyo-demo-projects'},
 
 					],
