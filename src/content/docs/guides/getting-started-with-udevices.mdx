@@ -10,6 +10,17 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 uDevices is our ecosystem of open source hardware devices that are compact, inexpensive, and ready to use and modify.
 Currently it's two devices - uECG and uMyo, but in time there may be more.
 
+import { LinkButton } from '@astrojs/starlight/components';
+
+<LinkButton
+  href="https://docs.astro.build"
+  variant="secondary"
+  icon="external"
+  iconPlacement="start"
+>
+  Related: Astro
+</LinkButton>
+
 ## Choose your device!
 
 <CardGrid>
@@ -24,3 +35,4 @@ Currently it's two devices - uECG and uMyo, but in time there may be more.
 	- [Detailed guide](../uecg-getting-started-hackaday)
 	</Card>
 </CardGrid>
+

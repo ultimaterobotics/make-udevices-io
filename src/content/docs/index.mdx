@@ -15,9 +15,10 @@ hero:
     - text: Join the community!
       link: https://discord.gg/9cbBHxRt
       icon: external
-    - text: Star on Github!
-      link: https://github.com/ultimaterobotics
-      icon: external
+    - text: Our shop
+      link: https://udevices.io/
+      icon: rocket
+      variant: secondary
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
@@ -25,19 +26,19 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 ## Get started!
 
 <CardGrid>
-	<Card title="uMyo" icon="setting">
-		[Learn about uMyo](guides/umyo-quick-start)  
-		[Features](guides/umyo)  
-		[Details](guides/umyo-description-hackaday)  
-		[Projects](guides/umyo-demo-projects)  
-		[Read the docs](guides/umyo-getting-started-hackaday)  
-	</Card>
-	<Card title="uECG" icon="heart">
-		[Learn about uECG](guides/uecg-quick-start)  
-		[Features](guides/uecg)  
-		[Details](guides/uecg-description-hackaday)  
-		[Read the docs](guides/umyo-getting-started-hackaday)  
-	</Card>
+    <Card title="uMyo" icon="setting">
+        [Learn about uMyo](guides/umyo-quick-start)  
+        [Features](guides/umyo)  
+        [Details](guides/umyo-description-hackaday)  
+        [Projects](guides/umyo-demo-projects)  
+        [Read the docs](guides/umyo-getting-started-hackaday)  
+    </Card>
+    <Card title="uECG" icon="heart">
+        [Learn about uECG](guides/uecg-quick-start)  
+        [Features](guides/uecg)  
+        [Details](guides/uecg-description-hackaday)  
+        [Read the docs](guides/umyo-getting-started-hackaday)  
+    </Card>
 </CardGrid>
 
 ## Real projects, real impact
@@ -48,18 +49,18 @@ Discover what you can do with uDevices:
 
 
 <CardGrid>
-	{/*<Card title="Learn" icon="pencil">
-		Guides on how to [set up](guides/uecg-basic-hackaday), [use](guides/umyo-using-bracelet-hackaday), [troubleshoot](guides/uecg-wireless-firmware-hackaday), and [work](guides/umyo-demo-projects) with uDevices.
-	</Card>*/}
-	<Card title="Highlight Project of the Month:" icon="add-document">
-		Knowledge compiled by the community, for the community.
-	</Card>
-	{/*<Card title="Hardware is hard..." icon="setting">
-		But it shouldn't be! We're here to make it accessible to everyone, starting with you.
-	</Card>*/}
-	<Card title="Docs & Projects:" icon="open-book">
-		Find guides, technical documentation, and setup instructions: 
-		[Getting Started →](guides/getting-started-with-udevices)  
-		[Building with uDevices →](guides/umyo-demo-projects)
-	</Card>
+    {/*<Card title="Learn" icon="pencil">
+        Guides on how to [set up](guides/uecg-basic-hackaday), [use](guides/umyo-using-bracelet-hackaday), [troubleshoot](guides/uecg-wireless-firmware-hackaday), and [work](guides/umyo-demo-projects) with uDevices.
+    </Card>*/}
+    <Card title="Highlight Project of the Month:" icon="add-document">
+        Knowledge compiled by the community, for the community.
+    </Card>
+    {/*<Card title="Hardware is hard..." icon="setting">
+        But it shouldn't be! We're here to make it accessible to everyone, starting with you.
+    </Card>*/}
+    <Card title="Docs & Projects:" icon="open-book">
+        Find guides, technical documentation, and setup instructions: 
+        [Getting Started →](guides/getting-started-with-udevices)  
+        [Building with uDevices →](guides/umyo-demo-projects)
+    </Card>
 </CardGrid>
