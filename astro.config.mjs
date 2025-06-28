@@ -1,5 +1,7 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import umami from "@yeskunall/astro-umami";
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -7,26 +9,6 @@ export default defineConfig({
         starlight({
             title: 'uDevices',
             head: [
-                {
-                    tag: 'script',
-                    attrs: {
-                        src: 'https://www.googletagmanager.com/gtag/js?id=G-BKQX2Y6S76',
-                        async: true,
-                        is: 'inline', 
-                    },
-                },
-                {
-                    tag: 'script',
-                    attrs: {
-                        is: 'inline', // Inline the script
-                    },
-                    children: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-BKQX2Y6S76', { anonymize_ip: true });
-          `,
-                },
             ],
             logo: {
                 light: './src/assets/uDevices_logo_short_light.svg',
@@ -87,5 +69,6 @@ export default defineConfig({
                 baseUrl: 'https://github.com/ultimaterobotics/make-udevices-io/edit/main/',
             },
         }),
+        umami({ id: "94db1cb1-74f4-4a40-ad6c-962362670409" }),
     ],
 });
