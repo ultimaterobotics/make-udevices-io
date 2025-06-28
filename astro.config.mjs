@@ -69,6 +69,6 @@ export default defineConfig({
                 baseUrl: 'https://github.com/ultimaterobotics/make-udevices-io/edit/main/',
             },
         }),
-        umami({ id: '94db1cb1-74f4-4a40-ad6c-962362670409' }),
+        umami({ id: '793bdf0a-c31b-4df3-a799-406b294845b9' }),
     ],
 });
