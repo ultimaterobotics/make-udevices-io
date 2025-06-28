@@ -15,7 +15,7 @@
     "@yeskunall/astro-umami": "0.0.6",
     "astro": "^5.8.1",
     "partytown": "^0.0.0",
-    "sharp": "^0.32.5",
+    "sharp": "^0.32.6",
     "typescript": "^5.4.5"
   }
 }
