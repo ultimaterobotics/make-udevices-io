@@ -19,7 +19,7 @@ export default defineConfig({
             dark: './src/assets/uDevices_logo_short_dark.svg',
         },
         social: [
-            { icon: 'discord', label: 'Discord', href: 'https://discord.gg/9cbBHxRt' },
+            { icon: 'discord', label: 'Discord', href: 'https://discord.com/invite/dEmCPBzv9G' },
             {
                 icon: 'github',
                 label: 'GitHub',

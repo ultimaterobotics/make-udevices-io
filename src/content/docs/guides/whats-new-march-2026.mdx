@@ -5,7 +5,7 @@ description: Firmware and software updates shipping with uMyo devices in March 2
 
 ## Overview
 
-This batch of uMyo devices ships with significant firmware and software updates. Depending on when your order was fulfilled, your device has one of three firmware configurations. This page explains what each can do and how to get started.
+In March 2026 we released significant firmware and software updates for uMyo, including BLE connectivity via Android bridge, OTA firmware updates, and a new Python workbench. This page covers what's new, how to get it, and what's coming next. If you received a device in the March 2026 batch, there's also a section below explaining which firmware your specific device shipped with.
 
 ## New capabilities
 
@@ -30,7 +30,7 @@ Check the shipping notification email you received — the date and carrier tell
 - Stable firmware with new magnetometer support and memory improvements
 - Works with nRF24 and USB base station modes
 - No BLE transport, no OTA capability
-- To update: requires SWD programmer — contact us via [Discord](https://discord.gg/9cbBHxRt) or email and we'll help
+- To update: requires SWD programmer — contact us via [Discord](https://discord.com/invite/dEmCPBzv9G) or email and we'll help
 
 **fw-ble** — shipped via DHL on or around March 13
 
@@ -44,7 +44,7 @@ Check the shipping notification email you received — the date and carrier tell
 - Firmware updates wirelessly via Android app
 - Most capable configuration
 
-Not sure which firmware you have, or need help upgrading? Join our [Discord](https://discord.gg/9cbBHxRt) or email us.
+Not sure which firmware you have, or need help upgrading? Join our [Discord](https://discord.com/invite/dEmCPBzv9G) or email us.
 
 ## Platform support
 
@@ -67,8 +67,10 @@ Not sure which firmware you have, or need help upgrading? Join our [Discord](htt
 
 ### Steps
 
+![Android app screenshot](../../../assets/app-screenshot.png)
+
 1. Find your PC's local IP address (`ip addr` on Linux, `ipconfig` on Windows)
-2. Install the Android app from [umyo-android](https://github.com/ultimaterobotics/umyo-android) — requires Android Studio or wireless debug install, no Play Store release yet
+2. Download the APK from the [v0.1.0 release](https://github.com/ultimaterobotics/umyo-android/releases/tag/v0.1.0) and install it on your Android device. Enable "Install from unknown sources" in developer options if prompted.
 3. Open the app, enter your PC's IP address and port (default: `26750`)
 4. Press the button on uMyo to power on, then press repeatedly to cycle through modes until LED is solid blue (BLE mode) — may take one or two presses depending on current mode
 5. Tap **Start GATT Raw** in the app — device connects automatically
@@ -78,7 +80,7 @@ Not sure which firmware you have, or need help upgrading? Join our [Discord](htt
 PYTHONPATH=src python tools/uf1_workbench.py --bind 0.0.0.0 --port 26750
 ```
 
-Your device appears in the workbench. Use `TAB`/`RIGHT` to cycle between devices, `ESC` to quit.
+Your device appears in the workbench. Press `ESC` to quit.
 
 ![UF1 Workbench showing real-time EMG, IMU, and spectrum data](../../../assets/uf1-workbench.png)
 
@@ -91,7 +93,7 @@ PYTHONPATH=src python tools/uf1_view.py --bind 0.0.0.0 --port 26750
 ![UF1 Live EMG Viewer showing real-time signal](../../../assets/uf1-viewer.png)
 
 :::tip
-If the workbench doesn't receive data, you may need to allow port 26750 in your firewall. On Linux with ufw: `sudo ufw allow 26750`. If you get stuck, ask in [Discord](https://discord.gg/9cbBHxRt).
+If the workbench doesn't receive data, you may need to allow port 26750 in your firewall. On Linux with ufw: `sudo ufw allow 26750`. If you get stuck, ask in [Discord](https://discord.com/invite/dEmCPBzv9G).
 :::
 
 ## How to update firmware via OTA
@@ -103,7 +105,7 @@ If the workbench doesn't receive data, you may need to allow port 26750 in your 
 3. Long-press the uMyo button for ~5 seconds until LED blinks blue slowly — device is now in bootloader mode
 4. Press the button once briefly — this switches bootloader from base to BLE mode (no LED change, this is expected)
 5. Tap **Start OTA (asset)** in the app
-6. Wait approximately 4–5 minutes — you'll see packet progress on screen. Do not interrupt.
+6. The upload takes approximately 4–5 minutes. You'll see packet progress in the app as it runs. Do not close the app or turn off uMyo during upload.
 
 ## What's coming next
 
@@ -117,4 +119,4 @@ If the workbench doesn't receive data, you may need to allow port 26750 in your 
 
 ## Questions?
 
-Join our [Discord](https://discord.gg/9cbBHxRt) — we're active there and most questions get answered the same day.
+Join our [Discord](https://discord.com/invite/dEmCPBzv9G) — we're active there and most questions get answered the same day.
