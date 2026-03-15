@@ -80,7 +80,7 @@ PYTHONPATH=src python tools/uf1_workbench.py --bind 0.0.0.0 --port 26750
 
 Your device appears in the workbench. Use `TAB`/`RIGHT` to cycle between devices, `ESC` to quit.
 
-![UF1 Workbench showing real-time EMG, IMU, and spectrum data](/images/uf1-workbench.png)
+![UF1 Workbench showing real-time EMG, IMU, and spectrum data](../../../assets/uf1-workbench.png)
 
 For EMG signal only (simpler view):
 
@@ -88,7 +88,7 @@ For EMG signal only (simpler view):
 PYTHONPATH=src python tools/uf1_view.py --bind 0.0.0.0 --port 26750
 ```
 
-![UF1 Live EMG Viewer showing real-time signal](/images/uf1-viewer.png)
+![UF1 Live EMG Viewer showing real-time signal](../../../assets/uf1-viewer.png)
 
 :::tip
 If the workbench doesn't receive data, you may need to allow port 26750 in your firewall. On Linux with ufw: `sudo ufw allow 26750`. If you get stuck, ask in [Discord](https://discord.gg/9cbBHxRt).

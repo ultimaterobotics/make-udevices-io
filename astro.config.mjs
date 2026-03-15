@@ -40,6 +40,7 @@ export default defineConfig({
                 label: 'uMyo',
                 items: [
                     // Each item here is one entry in the navigation menu.
+                    { label: "What's new — March 2026", link: '/guides/whats-new-march-2026' },
                     { label: 'Getting started', link: '/guides/umyo/' },
                     { label: 'Powering and turning on', link: '/guides/powering-umyo' },
                     { label: 'Using with dry electrodes', link: '/guides/umyo-emg-dry-electrodes-bracelet' },
