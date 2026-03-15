@@ -1,0 +1,120 @@
+---
+title: What's new — March 2026
+description: Firmware and software updates shipping with uMyo devices in March 2026, including BLE connectivity, OTA firmware updates, and a new Python workbench.
+---
+
+## Overview
+
+This batch of uMyo devices ships with significant firmware and software updates. Depending on when your order was fulfilled, your device has one of three firmware configurations. This page explains what each can do and how to get started.
+
+## New capabilities
+
+### BLE connectivity via Android bridge
+
+uMyo can now stream data over Bluetooth LE to an Android phone, which forwards it to your PC over WiFi. This gives you real-time EMG, IMU, and magnetometer data in a Python workbench without a USB receiver base. Currently supports one device at a time. Multi-device support is in development.
+
+### OTA firmware updates
+
+Devices shipped with the updated bootloader can receive firmware updates wirelessly via the Android app. No programmer or USB connection required.
+
+### New Python workbench (uf1-tools)
+
+A new Python GUI for real-time signal, IMU, and spectrum visualization via the Android bridge. The existing uMyo_python_tools remain the recommended path for multi-device setups via USB base — both are actively supported.
+
+## Which firmware does my device have?
+
+Check the shipping notification email you received — the date and carrier tell you which firmware your device has.
+
+**fw-base** — shipped via DHL on or around March 10
+
+- Stable firmware with new magnetometer support and memory improvements
+- Works with nRF24 and USB base station modes
+- No BLE transport, no OTA capability
+- To update: requires SWD programmer — contact us via [Discord](https://discord.gg/9cbBHxRt) or email and we'll help
+
+**fw-ble** — shipped via DHL on or around March 13
+
+- New BLE transport: raw EMG + full workbench mode via Android bridge
+- Original bootloader — no OTA capability yet
+- Can be upgraded to OTA capability with a one-time SWD flash of the new bootloader — after that, all future updates are wireless
+
+**fw-ble-ota** — shipped via Ukrposhta on or around March 13–14
+
+- New BLE transport + OTA-capable bootloader
+- Firmware updates wirelessly via Android app
+- Most capable configuration
+
+Not sure which firmware you have, or need help upgrading? Join our [Discord](https://discord.gg/9cbBHxRt) or email us.
+
+## Platform support
+
+| Platform | Status |
+|---|---|
+| Android (BLE bridge + OTA) | ✅ Working |
+| USB receiver base | ✅ Working |
+| Arduino / ESP32 (nRF24 or BLE) | ✅ Working |
+| Raspberry Pi | 🔄 Planned next |
+| Windows / Linux / Mac direct BLE | 🔄 Planned |
+| iPhone / iOS | 🔄 Planned |
+
+## Getting started with the Android bridge
+
+### Requirements
+
+- Android phone (Android 11+: Location permission and Location toggle must be ON for BLE scan)
+- PC and phone on the same WiFi network
+- uMyo with fw-ble or fw-ble-ota firmware
+
+### Steps
+
+1. Find your PC's local IP address (`ip addr` on Linux, `ipconfig` on Windows)
+2. Install the Android app from [umyo-android](https://github.com/ultimaterobotics/umyo-android) — requires Android Studio or wireless debug install, no Play Store release yet
+3. Open the app, enter your PC's IP address and port (default: `26750`)
+4. Press the button on uMyo to power on, then press repeatedly to cycle through modes until LED is solid blue (BLE mode) — may take one or two presses depending on current mode
+5. Tap **Start GATT Raw** in the app — device connects automatically
+6. On your PC, clone [uf1-tools](https://github.com/ultimaterobotics/uf1-tools) and run:
+
+```bash
+PYTHONPATH=src python tools/uf1_workbench.py --bind 0.0.0.0 --port 26750
+```
+
+Your device appears in the workbench. Use `TAB`/`RIGHT` to cycle between devices, `ESC` to quit.
+
+![UF1 Workbench showing real-time EMG, IMU, and spectrum data](/images/uf1-workbench.png)
+
+For EMG signal only (simpler view):
+
+```bash
+PYTHONPATH=src python tools/uf1_view.py --bind 0.0.0.0 --port 26750
+```
+
+![UF1 Live EMG Viewer showing real-time signal](/images/uf1-viewer.png)
+
+:::tip
+If the workbench doesn't receive data, you may need to allow port 26750 in your firewall. On Linux with ufw: `sudo ufw allow 26750`. If you get stuck, ask in [Discord](https://discord.gg/9cbBHxRt).
+:::
+
+## How to update firmware via OTA
+
+> Requires fw-ble-ota (OTA-capable bootloader)
+
+1. Enable Bluetooth and Location on your phone, open the app
+2. Enter your PC IP and port if not already set
+3. Long-press the uMyo button for ~5 seconds until LED blinks blue slowly — device is now in bootloader mode
+4. Press the button once briefly — this switches bootloader from base to BLE mode (no LED change, this is expected)
+5. Tap **Start OTA (asset)** in the app
+6. Wait approximately 4–5 minutes — you'll see packet progress on screen. Do not interrupt.
+
+## What's coming next
+
+- Multi-device BLE support
+- Raspberry Pi support (next platform priority)
+- In-app firmware file picker for OTA
+- Viewer mode in Android app
+- Direct BLE support on Windows / Linux / Mac
+- iOS support
+- F-Droid release, then Play Store
+
+## Questions?
+
+Join our [Discord](https://discord.gg/9cbBHxRt) — we're active there and most questions get answered the same day.
