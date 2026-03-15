@@ -1,0 +1,59 @@
+---
+title: Powering uMyo
+description: A quick overview of uMyo powering options - 3.7v lipo battery and CR2032 cell
+---
+import { Aside } from '@astrojs/starlight/components';
+import { YouTube } from 'astro-embed';
+import { Badge } from '@astrojs/starlight/components';
+
+## With lipo battery (recommended)
+uMyo needs at least 3V to work, ideally 3.3V, so it's best to power it with a standard 3.7V lipo battery. You can use the ones you already have or buy some. One uMyo consumes about **11mAh** so, for example, a 220 mAh battery will be enough for 20 hours.
+
+- A battery needs to have a JST PH2.0mm 2P connector with a correct black-and-red order.
+
+These batteries from Adafruit should work, but you can buy any suitable ones you can find:
+
+https://www.adafruit.com/product/4237
+
+https://www.adafruit.com/product/4236
+
+- You can use the connector from uMyo cables: cut a spare cable that comes with uMyo in half and solder it to any battery to make the one with needed connector;
+
+- You can also solder any lipo battery directly to BAT+ and BAT- pads on uMyo;
+
+<Aside type="caution">Always use only one battery for all connected uMyo devices.</Aside>
+
+## With CR2032 (low-power testing mode)
+If you don't have lipo batteries, you can temporarily use a CR2032 coin cell battery with a CR2032 holder (they come in the starter pack kit, or you can use a DIY one). 
+
+A CR2032 is a non-rechargeable battery which can only provide around 2mA in normal operation mode, and in case of uMyo it will be used in a heavy overcurrent mode, so it will be drained much faster than its rated capacity, leaving only around 30-40mAh of usable capacity. However, it still should be able to provide enough juice to work for a few hours, which is more than enough for initial testing and usage.
+
+<Aside type="note">Muscle activity LED doesn't work in this mode to reduce power consumption, so after initial LED sequence uMyo will go dark and you will not see LED lighting up during usage.</Aside>
+
+## Power on/off
+1. Attach electrode connectors, dry or wet. For wet ones, you can
+try not to solder them but firmly attach and see if they work 
+like this. This way, you can use them both. 
+
+2. Connect a battery to uMyo. You can use one with JST 
+connector (see Hackaday for some links to buy if you need one).
+Or solder any battery to the GND and V+ pads on the PCB.
+You only need one battery for all connected uMyos. 
+
+It’s best not to connect battery before attaching electrodes.
+
+1. Attach a 3.3-4.2V battery of your choice 
+
+2. Long press the button to turn uMyo on
+
+3. You should see several LED blinks: - red-red-green, blue, then 3 times to show current radio mode:
+
+- <Badge text="Pink" variant="tip" /> nRF24 mode
+- <Badge text="Blue" variant="note" /> BLE mode
+- <Badge text="Green" variant="success" /> PC station mode
+
+4. To turn uMyo off, hold the button for more than 2 seconds. When LED will switch from blue to red, release the button -> uMyo will stay off.
+
+See video instruction for more details:
+
+<YouTube id="https://www.youtube.com/watch?v=55IjU1o72lY"/>
