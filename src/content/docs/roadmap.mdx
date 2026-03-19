@@ -3,83 +3,278 @@ title: Roadmap
 description: What we're building, what's working, and what's coming next for uMyo and the UF1 ecosystem.
 ---
 
-This page tracks the state of uMyo hardware, firmware, software, and platform support. The "later" section is intentionally rough — we update it as things become clearer.
+What we're building, what's working, and what's coming next. The "later" section is intentionally rough — we update it as things become clearer.
 
 Have a feature request or bug report? Post in [#bugs-and-features](https://discord.com/invite/dEmCPBzv9G) on Discord.
 
----
+<style>{`
+  .rm-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sl-color-gray-3);
+    margin: 2rem 0 0.75rem;
+  }
+  .rm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 0.5rem;
+  }
+  .rm-card {
+    background: var(--sl-color-bg);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .rm-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sl-color-white);
+    margin: 0 0 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    line-height: 1.4;
+  }
+  .rm-card-sub {
+    font-size: 12px;
+    color: var(--sl-color-gray-2);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .badge {
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-done  { background: #d1fae5; color: #065f46; }
+  .badge-wip   { background: #dbeafe; color: #1e40af; }
+  .badge-next  { background: #fef3c7; color: #92400e; }
+  .badge-later { background: #f3f4f6; color: #374151; }
+  .rm-divider {
+    border: none;
+    border-top: 1px solid var(--sl-color-gray-5);
+    margin: 2.5rem 0;
+  }
+  .platform-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .platform-table td {
+    padding: 9px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    color: var(--sl-color-white);
+  }
+  .platform-table tr:last-child td { border-bottom: none; }
+  .platform-table td:last-child { text-align: right; }
+  .hw-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+  .hw-item:last-child { border-bottom: none; }
+  .hw-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+  .hw-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+  .hw-cost {
+    font-size: 13px;
+    color: var(--sl-color-gray-2);
+  }
+  .hw-why {
+    font-size: 12px;
+    color: var(--sl-color-gray-2);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .later-note {
+    font-size: 12px;
+    color: var(--sl-color-gray-3);
+    font-style: italic;
+    font-weight: 400;
+    margin-left: 6px;
+  }
+`}</style>
 
-## Done
+<p class="rm-label">Done</p>
+<div class="rm-grid">
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>UF1 protocol</p>
+    <p class="rm-card-sub">New open wireless transport stack — rewrote radio and connectivity layer from scratch</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>BLE streaming</p>
+    <p class="rm-card-sub">Advertising → GATT → single device bridge mode to Python via Android app</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>OTA firmware updates</p>
+    <p class="rm-card-sub">Wireless updates via Android app, single device</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>Android app v0.1.0</p>
+    <p class="rm-card-sub">BLE bridge + OTA — released on GitHub</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>New Python workbench</p>
+    <p class="rm-card-sub">Single device — EMG, IMU, magnetometer, spectrum</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>Web workbench GUI</p>
+    <p class="rm-card-sub">Browser-based, WebSocket + Python backend</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>Multi-device streaming</p>
+    <p class="rm-card-sub">3 simultaneous via Android + web workbench — EMG, IMU, spectrum, 3D orientation, detail toggle</p>
+  </div>
+</div>
 
-| | |
-|---|---|
-| **UF1 protocol** | New open wireless transport stack — rewrote the radio and connectivity layer from scratch |
-| **BLE streaming** | Advertising → GATT → single device bridge mode to Python via Android app |
-| **OTA firmware updates** | Wireless updates via Android app, single device |
-| **Android app v0.1.0** | BLE bridge + OTA — [released on GitHub](https://github.com/ultimaterobotics/umyo-android) |
-| **New Python workbench** | Single device — EMG, IMU, magnetometer, spectrum |
-| **Web workbench GUI** | Browser-based, WebSocket + Python backend |
-| **Multi-device streaming** | 3 simultaneous via Android + web workbench — EMG, IMU, spectrum, 3D orientation, detail toggle |
+<p class="rm-label">In progress</p>
+<div class="rm-grid">
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-wip">in progress</span>IMU fps improvement</p>
+    <p class="rm-card-sub">BLE scheduler fix on the firmware side</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-wip">in progress</span>Firmware branch merge + release</p>
+    <p class="rm-card-sub">New stack merged to main, .hex files published, SWD + OTA flashing tutorials</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-wip">in progress</span>Pre-orders — next batch</p>
+    <p class="rm-card-sub">Bank transfer via Shopify to fund a larger production run</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-wip">in progress</span>Local bracelet production</p>
+    <p class="rm-card-sub">First prototypes engineered and made by a local woman-owned sewing shop — more types coming</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-wip">in progress</span>Docs update</p>
+    <p class="rm-card-sub">Quick start guides, firmware tutorials, what's new page</p>
+  </div>
+</div>
 
----
+<p class="rm-label">Up next</p>
+<div class="rm-grid">
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Base mode in web workbench</p>
+    <p class="rm-card-sub">Wire up USB base mode to the new GUI</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Direct PC streaming</p>
+    <p class="rm-card-sub">Linux + Windows — no Android bridge needed</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Recording, export + datasets</p>
+    <p class="rm-card-sub">Capture and export EMG sessions from the workbench</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>FFT in workbench</p>
+    <p class="rm-card-sub">Frequency domain analysis</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Workbench layout modes</p>
+    <p class="rm-card-sub">Simple / advanced / calibration switching per UF1 spec</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Raspberry Pi support</p>
+    <p class="rm-card-sub">Bleak library port — also blocked on hardware, see wishlist</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Gesture training workbench</p>
+    <p class="rm-card-sub">Label gestures, build models, map to outputs</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>iOS support</p>
+    <p class="rm-card-sub">Blocked on hardware — see wishlist</p>
+  </div>
+</div>
 
-## In progress
+<p class="rm-label">Later <span class="later-note">— to be revised</span></p>
+<div class="rm-grid">
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-later">later</span>Kinematics visualization</p>
+    <p class="rm-card-sub">Real-time muscle and joint rendering</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-later">later</span>API</p>
+    <p class="rm-card-sub">External access to streaming data — details TBD</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-later">later</span>uECG production resumption</p>
+    <p class="rm-card-sub">Pending capacity after uMyo batch</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-later">later</span>US fulfillment</p>
+    <p class="rm-card-sub">Battery-inclusive kits, local shipping</p>
+  </div>
+</div>
 
-| | |
-|---|---|
-| **IMU fps improvement** | BLE scheduler fix on the firmware side |
-| **Firmware branch merge + release** | New stack merged to main, .hex files published, SWD + OTA flashing tutorials |
-| **Pre-orders — next production batch** | Bank transfer via Shopify to fund a larger production run |
-| **Local bracelet production** | First prototypes engineered and made by a local woman-owned sewing shop — more types coming |
-| **Docs update** | Quick start guides, firmware tutorials, what's new page |
+<hr class="rm-divider" />
 
----
+<p class="rm-label">Platform support</p>
+<div class="rm-card" style="padding: 4px 14px;">
+  <table class="platform-table">
+    <tbody>
+      <tr><td>Android</td><td><span class="badge badge-done">supported</span></td></tr>
+      <tr><td>Linux / Mac (Python)</td><td><span class="badge badge-done">supported</span></td></tr>
+      <tr><td>Windows</td><td><span class="badge badge-wip">partial</span></td></tr>
+      <tr><td>Raspberry Pi</td><td><span class="badge badge-next">coming soon</span></td></tr>
+      <tr><td>iOS</td><td><span class="badge badge-later">planned</span></td></tr>
+    </tbody>
+  </table>
+</div>
 
-## Up next
+<hr class="rm-divider" />
 
-| | |
-|---|---|
-| **Base mode in web workbench** | Wire up USB base mode to the new GUI |
-| **Direct PC streaming** | Linux + Windows — no Android bridge needed |
-| **Recording, export + datasets** | Capture and export EMG sessions from workbench |
-| **FFT in workbench** | Frequency domain analysis |
-| **Workbench layout modes** | Simple / advanced / calibration switching per UF1 spec |
-| **Raspberry Pi support** | Bleak library port — also blocked on hardware, see wishlist |
-| **Gesture training workbench** | Label gestures, build models, map to outputs |
-| **iOS support** | Blocked on hardware — see wishlist |
+<p class="rm-label">Hardware wishlist</p>
 
----
+We maintain this list publicly so the community can see exactly what we need and why. Support us on [Open Collective](https://opencollective.com/udevices).
 
-## Later _(to be revised)_
-
-| | |
-|---|---|
-| **Kinematics visualization** | Real-time muscle and joint rendering |
-| **API** | External access to streaming data — details TBD |
-| **uECG production resumption** | Pending capacity after uMyo batch |
-| **US fulfillment** | Battery-inclusive kits, local shipping |
-
----
-
-## Platform support
-
-| Platform | Status |
-|---|---|
-| Android | ✅ Supported |
-| Linux / Mac (Python) | ✅ Supported |
-| Windows | 🔄 Partial |
-| Raspberry Pi | 🔜 Coming soon |
-| iOS | ⏳ Planned |
-
----
-
-## Hardware wishlist
-
-We maintain this list publicly so the community can see exactly what we need and why. It's also referenced from our [Open Collective page](https://opencollective.com/udevices).
-
-| Item | Cost | Why |
-|---|---|---|
-| **Raspberry Pi 4 or 5** | ~$70 | Most requested platform — BLE via Bleak, embedded use cases, robotics integration |
-| **Android test devices × 2–3** | ~$120 | BLE compatibility varies by chipset and Android version — secondhand devices needed to test reliably across hardware |
-| **Raspberry Pi CM5** | ~$90 | Embedded platform support — compact deployments, wearable integration, standalone sensor nodes |
-| **iPhone + Mac mini** | ~$573 | iOS BLE development requires physical Apple hardware — unlocks support for a large segment of users currently unable to use the app |
+<div class="rm-card" style="padding: 4px 14px; margin-top: 0.75rem;">
+  <div class="hw-item">
+    <div class="hw-header">
+      <span class="hw-name">Raspberry Pi 4 or 5</span>
+      <span class="hw-cost">~$70</span>
+      <span class="badge badge-next">next</span>
+    </div>
+    <p class="hw-why">Most requested platform — BLE via Bleak, embedded use cases, robotics integration</p>
+  </div>
+  <div class="hw-item">
+    <div class="hw-header">
+      <span class="hw-name">Android test devices × 2–3</span>
+      <span class="hw-cost">~$120</span>
+      <span class="badge badge-next">next</span>
+    </div>
+    <p class="hw-why">BLE compatibility varies by chipset and Android version — secondhand devices needed to test reliably across hardware</p>
+  </div>
+  <div class="hw-item">
+    <div class="hw-header">
+      <span class="hw-name">Raspberry Pi CM5</span>
+      <span class="hw-cost">~$90</span>
+      <span class="badge badge-next">next</span>
+    </div>
+    <p class="hw-why">Embedded platform support — compact deployments, wearable integration, standalone sensor nodes</p>
+  </div>
+  <div class="hw-item">
+    <div class="hw-header">
+      <span class="hw-name">iPhone + Mac mini</span>
+      <span class="hw-cost">~$573</span>
+      <span class="badge badge-later">later</span>
+    </div>
+    <p class="hw-why">iOS BLE development requires physical Apple hardware — unlocks support for a large segment of users currently unable to use the app</p>
+  </div>
+</div>
