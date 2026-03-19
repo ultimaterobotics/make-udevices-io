@@ -48,6 +48,7 @@ export default defineConfig({
                     { label: 'Arduino/ESP32 mode', link: '/guides/umyo-arduino-hackaday' },
                     { label: 'Multiple uMyo sensors', link: '/guides/multiple-umyo-sensors' },
                     { label: 'Firmware upload (Windows)', link: '/guides/how-to-upload-firmware-on-umyo-windows' },
+                    { label: 'Flashing firmware via SWD', link: '/guides/firmware-flash-swd' },
                     { label: 'Demo projects', link: '/guides/umyo-demo-projects' },
 
                 ],

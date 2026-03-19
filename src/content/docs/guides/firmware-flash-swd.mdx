@@ -1,0 +1,193 @@
+---
+title: Flashing firmware via SWD programmer
+description: How to flash uMyo firmware (and optionally bootloader) using an SWD programmer on Linux, Windows, or macOS.
+---
+
+import { Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+
+You need to flash firmware directly when you want to upgrade a device that doesn't have OTA capability yet, or when you want to give a device the OTA-capable bootloader so all future updates can be done wirelessly.
+
+For devices that already have the OTA bootloader, wireless update via the Android app is easier — see [How to update firmware via OTA](/guides/whats-new-march-2026#how-to-update-firmware-via-ota).
+
+---
+
+## What you need
+
+### A programmer
+
+Any SWD-capable debug probe works. Here are the most practical options, roughly in order of "most likely to already own one":
+
+**ST-Link v2 clone** (~$3–5 on AliExpress, eBay, or local electronics shops)
+The most common option. Search "ST-Link v2 clone" — the small black USB stick form factor is what you want. Works with openocd on all platforms.
+
+> ⚠️ **ST-Link v3** (the newer official ST product) does **not** support nRF52 — it's STM32-only. If you have one of these, use one of the options below instead.
+
+**Raspberry Pi Pico with picoprobe firmware** (~$4, widely available)
+If you have a Pico already, this is the fastest path. Flash the [picoprobe firmware](https://github.com/raspberrypi/picoprobe/releases) — drag the `.uf2` onto the Pico in BOOTSEL mode, done. It appears as a standard CMSIS-DAP probe.
+
+**CMSIS-DAP / DAPLink clone** (~$5–10)
+A generic ARM debug probe. Slightly more correct than the ST-Link clone and has no deprecation issues with newer openocd. Search "CMSIS-DAP DAPLink probe". Also works as a USB-serial adapter.
+
+**If you already have a J-Link, J-Link EDU, nRF52 DK, or other SWD probe** — those all work too. Replace the interface config flag in the commands below with the appropriate one for your probe (`interface/jlink.cfg`, etc).
+
+### 4 jumper wires
+
+You'll connect SWDIO, SWCLK, GND, and 3V3 from the programmer to the pogo pin pads on uMyo.
+
+<Aside type="caution">
+Always hold the pogo pins firmly against the uMyo pads during flashing. A loose connection mid-flash is the most common cause of problems.
+</Aside>
+
+---
+
+## Install openocd
+
+<Tabs>
+<TabItem label="Linux">
+
+```bash
+sudo apt install openocd        # Ubuntu / Debian
+sudo dnf install openocd        # Fedora
+sudo pacman -S openocd          # Arch
+```
+
+</TabItem>
+<TabItem label="macOS">
+
+```bash
+brew install openocd
+```
+
+</TabItem>
+<TabItem label="Windows">
+
+Install via xpack, which gives you a pre-built binary without compiling:
+
+1. Install Node.js from [nodejs.org](https://nodejs.org)
+2. Install xpm: `npm install --global xpm`
+3. Install openocd: `xpm install --global @xpack-dev-tools/openocd@latest`
+
+Then run openocd from the xpack bin directory, e.g.:
+```
+%USERPROFILE%\AppData\Roaming\xPacks\@xpack-dev-tools\openocd\<version>\.content\bin\openocd.exe
+```
+
+Or add it to your PATH. The commands below work the same in PowerShell once openocd is on PATH.
+
+</TabItem>
+</Tabs>
+
+---
+
+## Flash commands
+
+### Flashing bootloader + firmware
+
+Do this if the device doesn't have the OTA-capable bootloader yet. After this, all future updates can be done wirelessly via the Android app.
+
+Replace the hex paths with wherever you've saved the files. Download them from the [GitHub releases page](https://github.com/ultimaterobotics).
+
+<Tabs>
+<TabItem label="ST-Link v2 clone">
+
+```bash
+# Step 1 — bootloader
+sudo openocd \
+  -f interface/stlink.cfg \
+  -f target/nrf52.cfg \
+  -c init -c "reset halt" \
+  -c "flash write_image erase /path/to/uboot_ble.hex" \
+  -c "reset" -c exit
+
+sleep 2
+
+# Step 2 — firmware
+sudo openocd \
+  -f interface/stlink.cfg \
+  -f target/nrf52.cfg \
+  -c init -c "reset halt" \
+  -c "flash write_image erase /path/to/uMyo.hex" \
+  -c "reset" -c exit
+```
+
+</TabItem>
+<TabItem label="Pico (picoprobe) / CMSIS-DAP">
+
+```bash
+# Step 1 — bootloader
+sudo openocd \
+  -f interface/cmsis-dap.cfg \
+  -f target/nrf52.cfg \
+  -c init -c "reset halt" \
+  -c "flash write_image erase /path/to/uboot_ble.hex" \
+  -c "reset" -c exit
+
+sleep 2
+
+# Step 2 — firmware
+sudo openocd \
+  -f interface/cmsis-dap.cfg \
+  -f target/nrf52.cfg \
+  -c init -c "reset halt" \
+  -c "flash write_image erase /path/to/uMyo.hex" \
+  -c "reset" -c exit
+```
+
+</TabItem>
+</Tabs>
+
+### Flashing firmware only
+
+If you just want to update the firmware and already have an OTA-capable bootloader, or simply don't need OTA:
+
+<Tabs>
+<TabItem label="ST-Link v2 clone">
+
+```bash
+sudo openocd \
+  -f interface/stlink.cfg \
+  -f target/nrf52.cfg \
+  -c init -c "reset halt" \
+  -c "flash write_image erase /path/to/uMyo.hex" \
+  -c "reset" -c exit
+```
+
+</TabItem>
+<TabItem label="Pico (picoprobe) / CMSIS-DAP">
+
+```bash
+sudo openocd \
+  -f interface/cmsis-dap.cfg \
+  -f target/nrf52.cfg \
+  -c init -c "reset halt" \
+  -c "flash write_image erase /path/to/uMyo.hex" \
+  -c "reset" -c exit
+```
+
+</TabItem>
+</Tabs>
+
+---
+
+## What a successful flash looks like
+
+You should see something like this at the end of each openocd run:
+
+```
+Info : nRF52832-QFAA(build code: E0) 512kB Flash, 64kB RAM
+...
+Info : Padding image section ...
+Info : Flash write took X.Xs
+** Programming Finished **
+** Verify OK **
+```
+
+If you see `Error: libusb_open() failed` — the programmer isn't being found. On Linux, you may need a udev rule or to run with `sudo`. On Windows, you may need to install the ST-Link driver (for ST-Link clones) or the WinUSB driver via [Zadig](https://zadig.akeo.ie/) (for CMSIS-DAP / Pico picoprobe).
+
+If you see `Error: Could not find MEM-AP to control the core` — the pogo pins aren't making a solid connection. Press more firmly and retry.
+
+---
+
+## Still stuck?
+
+Join our [Discord](https://discord.com/invite/dEmCPBzv9G) — post what you see in the terminal and we'll help debug it.
