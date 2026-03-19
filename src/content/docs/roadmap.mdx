@@ -1,0 +1,85 @@
+---
+title: Roadmap
+description: What we're building, what's working, and what's coming next for uMyo and the UF1 ecosystem.
+---
+
+This page tracks the state of uMyo hardware, firmware, software, and platform support. The "later" section is intentionally rough — we update it as things become clearer.
+
+Have a feature request or bug report? Post in [#bugs-and-features](https://discord.com/invite/dEmCPBzv9G) on Discord.
+
+---
+
+## Done
+
+| | |
+|---|---|
+| **UF1 protocol** | New open wireless transport stack — rewrote the radio and connectivity layer from scratch |
+| **BLE streaming** | Advertising → GATT → single device bridge mode to Python via Android app |
+| **OTA firmware updates** | Wireless updates via Android app, single device |
+| **Android app v0.1.0** | BLE bridge + OTA — [released on GitHub](https://github.com/ultimaterobotics/umyo-android) |
+| **New Python workbench** | Single device — EMG, IMU, magnetometer, spectrum |
+| **Web workbench GUI** | Browser-based, WebSocket + Python backend |
+| **Multi-device streaming** | 3 simultaneous via Android + web workbench — EMG, IMU, spectrum, 3D orientation, detail toggle |
+
+---
+
+## In progress
+
+| | |
+|---|---|
+| **IMU fps improvement** | BLE scheduler fix on the firmware side |
+| **Firmware branch merge + release** | New stack merged to main, .hex files published, SWD + OTA flashing tutorials |
+| **Pre-orders — next production batch** | Bank transfer via Shopify to fund a larger production run |
+| **Local bracelet production** | First prototypes engineered and made by a local woman-owned sewing shop — more types coming |
+| **Docs update** | Quick start guides, firmware tutorials, what's new page |
+
+---
+
+## Up next
+
+| | |
+|---|---|
+| **Base mode in web workbench** | Wire up USB base mode to the new GUI |
+| **Direct PC streaming** | Linux + Windows — no Android bridge needed |
+| **Recording, export + datasets** | Capture and export EMG sessions from workbench |
+| **FFT in workbench** | Frequency domain analysis |
+| **Workbench layout modes** | Simple / advanced / calibration switching per UF1 spec |
+| **Raspberry Pi support** | Bleak library port — also blocked on hardware, see wishlist |
+| **Gesture training workbench** | Label gestures, build models, map to outputs |
+| **iOS support** | Blocked on hardware — see wishlist |
+
+---
+
+## Later _(to be revised)_
+
+| | |
+|---|---|
+| **Kinematics visualization** | Real-time muscle and joint rendering |
+| **API** | External access to streaming data — details TBD |
+| **uECG production resumption** | Pending capacity after uMyo batch |
+| **US fulfillment** | Battery-inclusive kits, local shipping |
+
+---
+
+## Platform support
+
+| Platform | Status |
+|---|---|
+| Android | ✅ Supported |
+| Linux / Mac (Python) | ✅ Supported |
+| Windows | 🔄 Partial |
+| Raspberry Pi | 🔜 Coming soon |
+| iOS | ⏳ Planned |
+
+---
+
+## Hardware wishlist
+
+We maintain this list publicly so the community can see exactly what we need and why. It's also referenced from our [Open Collective page](https://opencollective.com/udevices).
+
+| Item | Cost | Why |
+|---|---|---|
+| **Raspberry Pi 4 or 5** | ~$70 | Most requested platform — BLE via Bleak, embedded use cases, robotics integration |
+| **Android test devices × 2–3** | ~$120 | BLE compatibility varies by chipset and Android version — secondhand devices needed to test reliably across hardware |
+| **Raspberry Pi CM5** | ~$90 | Embedded platform support — compact deployments, wearable integration, standalone sensor nodes |
+| **iPhone + Mac mini** | ~$573 | iOS BLE development requires physical Apple hardware — unlocks support for a large segment of users currently unable to use the app |
