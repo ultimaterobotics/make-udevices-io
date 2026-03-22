@@ -109,55 +109,31 @@ Not sure which firmware you have, or need help upgrading? Join our [Discord](htt
 
 ### Requirements
 
-- Android phone (Android 11+: Location permission and Location toggle must be ON for BLE scan)
+- Android phone (Android 8.0+). On Android 11+, Location permission and Location toggle must be ON for BLE scan.
 - PC and phone on the same WiFi network
 - uMyo with fw-ble or fw-ble-ota firmware
 
 ### Steps
 
-1. Find your PC's local IP address (`ip addr` on Linux, `ipconfig` on Windows)
-2. Download the APK from the [v0.1.0 release](https://github.com/ultimaterobotics/umyo-android/releases/tag/v0.1.0) and install it. Enable "Install from unknown sources" in developer options if prompted.
-3. Open the app, enter your PC's IP address and port (default: `26750`)
-4. Press the button on uMyo to power on, then press repeatedly to cycle modes until the LED is solid blue (BLE mode)
-5. Tap **Start GATT Raw** in the app — device connects automatically
-6. On your PC, clone [uf1-tools](https://github.com/ultimaterobotics/uf1-tools) and run the workbench:
-
-```bash
-cd uf1-tools
-python -m venv venv
-source venv/bin/activate      # on Windows: venv\Scripts\activate
-pip install -e ".[dev]"
-pip install websockets
-export PYTHONPATH=src         # on Windows: set PYTHONPATH=src
-python tools/uf1_workbench_server.py
-```
-
-The workbench opens automatically in your browser. Your device appears as a row and starts streaming.
-
-<Aside>
-If the workbench doesn't receive data, you may need to allow port 26750 in your firewall. On Linux with ufw: `sudo ufw allow 26750`. Ask in [Discord](https://discord.com/invite/dEmCPBzv9G) if you get stuck.
-</Aside>
-
-### Connecting multiple devices
-
-With the workbench running, tap **Start GATT Raw** for each additional uMyo. Each device appears as its own row automatically. Up to three confirmed working simultaneously; more may work depending on your phone's BLE stack.
-
-![Three uMyos streaming simultaneously in the uMyo Android app](../../../assets/umyo-android-multi-device-stream.png)
+1. Run `uf1_workbench_server.py` on PC first ([uf1-tools](https://github.com/ultimaterobotics/uf1-tools))
+2. Make sure your phone and PC are on the same WiFi network. Download the APK from the [v0.2.0 release](https://github.com/ultimaterobotics/umyo-android/releases/tag/v0.2.0), install it, open the app, go to the Streaming screen and enter your PC's IP address and port (default: `26750`).
+3. Power on uMyo with a short button press. You'll see a start sequence of colored flashes — wait for it to finish (ends with the turquoise muscle activity LED turning on). After that, a short press will show 3 blinks indicating the current radio mode: pink = nRF24, green = base, **blue = BLE**. Keep short pressing until you get 3 blue blinks.
+   If you have multiple uMyos, repeat for each one.
+4. Tap **Scan for Devices** and wait for all your devices to appear in the list, then go to the Streaming screen and tap **Start Streaming**.
+   *If a device loses its name or disconnects, tap Disconnect on it — the scan will find it again. If it doesn't come back after a few tries, turn it off and on again with a short press, then scan again.*
 
 ---
 
 ## How to update firmware via OTA
 
-<Aside type="caution">
-Requires fw-ble-ota (OTA-capable bootloader). If you have fw-base or fw-ble, contact us — we can walk you through a one-time wired upgrade that gives you OTA capability from then on.
-</Aside>
+> Requires fw-ble-ota (OTA-capable bootloader)
 
-1. Enable Bluetooth and Location on your phone, open the app
-2. Enter your PC IP and port if not already set
-3. Long-press the uMyo button for ~5 seconds until LED blinks blue slowly — device is now in bootloader mode
-4. Press the button once briefly — switches bootloader from base to BLE mode (no LED change, expected)
-5. Tap **Start OTA (asset)** in the app
-6. Upload takes approximately 4–5 minutes. Do not close the app or turn off uMyo during upload.
+1. Enable Bluetooth and Location on your phone, open the app.
+2. Enter your PC IP and port if not already set.
+3. Make sure the device is **off**. Press and hold the button — the LED will turn solid blue (instead of the normal start sequence). Keep holding for 5+ seconds until the LED switches to a slow blue blink. The device is now in bootloader mode.
+4. Short press the button once — this switches the bootloader from base to BLE mode (no LED change, this is expected).
+5. Tap **Start OTA (asset)** in the app — it will scan and connect automatically.
+6. The upload takes approximately 4–5 minutes. You'll see packet progress in the app as it runs. Do not close the app or turn off uMyo during upload.
 
 ---
 
