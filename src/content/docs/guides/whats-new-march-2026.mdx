@@ -40,7 +40,7 @@ Each device gets its own row in the workbench with independent waveform, spectru
 
 ### BLE connectivity via Android bridge
 
-uMyo streams data over Bluetooth LE to an Android phone, which forwards it to your PC over WiFi. This gives you real-time EMG, IMU, and magnetometer data in the workbench without a USB receiver base.
+uMyo streams data over Bluetooth LE to an Android phone, which forwards it to your PC over WiFi. This gives you real-time EMG, IMU, and magnetometer data in the workbench without a USB receiver base. Supports up to 6 simultaneous devices.
 
 ### OTA firmware updates
 
@@ -62,6 +62,16 @@ A browser-based workbench replaces the previous pygame GUI. It runs a local Pyth
 ### Persistent device naming
 
 Device names now persist across firmware updates and reconnects. The Android app re-sends the device name every 5 seconds after first data, so names survive brief disconnects. The name cache is MAC-keyed.
+
+---
+
+## ESP32 and BLE advertisement mode
+
+BLE advertisement mode still works. When uMyo is in BLE mode but no phone is connected, it broadcasts standard BLE advertisement packets containing spectrum and quaternion data in the manufacturer-specific field — the same format as before. ESP32 and other BLE scanners can receive these as usual.
+
+When the Android app connects, the device switches to GATT streaming automatically. When the app disconnects, advertisement resumes.
+
+Note: advertisement packets include spectrum/FFT summary and QUAT data, but not raw EMG samples. For raw EMG over BLE, a GATT connection is required.
 
 ---
 
