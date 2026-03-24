@@ -109,6 +109,31 @@ Have a feature request or bug report? Post in [#bugs-and-features](https://disco
     font-weight: 400;
     margin-left: 6px;
   }
+  .hw-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .hw-table th {
+    padding: 6px 8px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--sl-color-gray-3);
+    text-align: left;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+  .hw-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+    color: var(--sl-color-white);
+    vertical-align: top;
+  }
+  .hw-table tr:last-child td { border-bottom: none; }
+  .hw-table td:nth-child(2) { white-space: nowrap; color: var(--sl-color-gray-2); }
+  .hw-table td:nth-child(3) { white-space: nowrap; }
+  .hw-table td:nth-child(4) { color: var(--sl-color-gray-2); font-size: 12px; line-height: 1.5; }
 `}</style>
 
 <p class="rm-label">Done</p>
@@ -157,6 +182,10 @@ Have a feature request or bug report? Post in [#bugs-and-features](https://disco
     <p class="rm-card-title"><span class="badge badge-done">done</span>GitHub READMEs + release notes</p>
     <p class="rm-card-sub">★ All repos updated — uMyo firmware, bootloader, Android app, urf_lib</p>
   </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-done">done</span>UF1 spec v2</p>
+    <p class="rm-card-sub">Protocol architecture clarified — adapter model defined, raw device formats documented as first-class spec content, base station serial format specified</p>
+  </div>
 </div>
 
 <p class="rm-label">In progress</p>
@@ -173,6 +202,10 @@ Have a feature request or bug report? Post in [#bugs-and-features](https://disco
 
 <p class="rm-label">Up next</p>
 <div class="rm-grid">
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Base mode in uf1-tools</p>
+    <p class="rm-card-sub">PC-side serial adapter: reads base station 0x4F+0xD5 serial output, converts to UF1 UDP — same pipeline as BLE bridge</p>
+  </div>
   <div class="rm-card">
     <p class="rm-card-title"><span class="badge badge-next">next</span>Base mode in web workbench</p>
     <p class="rm-card-sub">Wire up USB base mode to the new GUI</p>
@@ -213,6 +246,18 @@ Have a feature request or bug report? Post in [#bugs-and-features](https://disco
     <p class="rm-card-title"><span class="badge badge-next">next</span>Docs site reorganization</p>
     <p class="rm-card-sub">Full restructure of make.udevices.io — analytics-informed, clearer getting started path</p>
   </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Firmware update: battery + profile byte</p>
+    <p class="rm-card-sub">Adds battery level reporting and a format identification byte to GATT payloads — enables reliable profile detection without size sniffing</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>LSL output adapter</p>
+    <p class="rm-card-sub">uf1-tools outputs to Lab Streaming Layer — unlocks compatibility with neuroscience/BCI research toolchains (LabRecorder, MATLAB, BrainFlow ecosystem)</p>
+  </div>
+  <div class="rm-card">
+    <p class="rm-card-title"><span class="badge badge-next">next</span>Generic nRF52840 dongle support</p>
+    <p class="rm-card-sub">Test and document commodity nRF52840 USB dongles (Nordic, Seeed XIAO, Adafruit) as base station alternatives — removes custom hardware requirement for base mode</p>
+  </div>
 </div>
 
 <p class="rm-label">Later <span class="later-note">— to be revised</span></p>
@@ -244,7 +289,7 @@ Have a feature request or bug report? Post in [#bugs-and-features](https://disco
       <tr><td>Android</td><td><span class="badge badge-done">supported</span></td></tr>
       <tr><td>Linux / Mac (Python)</td><td><span class="badge badge-done">supported</span></td></tr>
       <tr><td>Windows</td><td><span class="badge badge-wip">partial</span></td></tr>
-      <tr><td>Raspberry Pi</td><td><span class="badge badge-next">coming soon</span></td></tr>
+      <tr><td>Raspberry Pi</td><td><span class="badge badge-wip">in progress</span></td></tr>
       <tr><td>iOS</td><td><span class="badge badge-later">planned</span></td></tr>
     </tbody>
   </table>
@@ -256,37 +301,49 @@ Have a feature request or bug report? Post in [#bugs-and-features](https://disco
 
 We maintain this list publicly so the community can see exactly what we need and why. Support us on [Open Collective](https://opencollective.com/udevices).
 
+Where possible we buy used or refurbished hardware to keep costs down. Prices are secondhand market estimates where applicable, retail where used isn't realistic.
+
 <div class="rm-card" style="padding: 4px 14px; margin-top: 0.75rem;">
-  <div class="hw-item">
-    <div class="hw-header">
-      <span class="hw-name">Raspberry Pi 4 or 5</span>
-      <span class="hw-cost">~$70</span>
-      <span class="badge badge-next">next</span>
-    </div>
-    <p class="hw-why">Most requested platform — BLE via Bleak, embedded use cases, robotics integration</p>
-  </div>
-  <div class="hw-item">
-    <div class="hw-header">
-      <span class="hw-name">Android test devices × 2–3</span>
-      <span class="hw-cost">~$120</span>
-      <span class="badge badge-next">next</span>
-    </div>
-    <p class="hw-why">BLE compatibility varies by chipset and Android version — secondhand devices needed to test reliably across hardware</p>
-  </div>
-  <div class="hw-item">
-    <div class="hw-header">
-      <span class="hw-name">Raspberry Pi CM5</span>
-      <span class="hw-cost">~$90</span>
-      <span class="badge badge-next">next</span>
-    </div>
-    <p class="hw-why">Embedded platform support — compact deployments, wearable integration, standalone sensor nodes</p>
-  </div>
-  <div class="hw-item">
-    <div class="hw-header">
-      <span class="hw-name">iPhone + Mac mini</span>
-      <span class="hw-cost">~$573</span>
-      <span class="badge badge-later">later</span>
-    </div>
-    <p class="hw-why">iOS BLE development requires physical Apple hardware — unlocks support for a large segment of users currently unable to use the app</p>
-  </div>
+  <table class="hw-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Priority</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Raspberry Pi 4 or 5</td>
+        <td>~$80–90</td>
+        <td><span class="badge badge-next">next</span></td>
+        <td>Most requested platform — BLE via Bleak, embedded use cases, robotics integration. Both are supported targets.</td>
+      </tr>
+      <tr>
+        <td>nRF52840 USB dongles ×3</td>
+        <td>~$45</td>
+        <td><span class="badge badge-next">next</span></td>
+        <td>Testing generic dongle support as base station alternative — Nordic official, Seeed XIAO, Adafruit. Would remove custom hardware requirement for base mode.</td>
+      </tr>
+      <tr>
+        <td>Android test devices ×2</td>
+        <td>~$50</td>
+        <td><span class="badge badge-next">next</span></td>
+        <td>Secondhand. Exynos-based Samsung (e.g. Galaxy A50/A51) and budget MediaTek (e.g. Redmi Note 7/8) — covers BLE stack variation across chipsets.</td>
+      </tr>
+      <tr>
+        <td>Raspberry Pi CM5</td>
+        <td>~$90</td>
+        <td><span class="badge badge-later">later</span></td>
+        <td>Compact embedded deployments — standalone sensor nodes, wearable integration.</td>
+      </tr>
+      <tr>
+        <td>iPhone + Mac mini</td>
+        <td>~$573</td>
+        <td><span class="badge badge-later">later</span></td>
+        <td>iOS BLE development requires physical Apple hardware — unlocks support for a large segment of users.</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
